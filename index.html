@@ -371,7 +371,7 @@ function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.c
 function saveConfig(){
   var raw=document.getElementById('cfg-input').value.trim();
   var e=document.getElementById('cfg-err'),cfg;
-  try{var m=raw.match(/\{[\s\S]+\}/);if(!m)throw 0;cfg=JSON.parse(m[0]);if(!cfg.apiKey||!cfg.databaseURL)throw 0}
+  try{var m=raw.match(/\{[\s\S]+\}/);if(!m)throw 0;var j=m[0].replace(/([{,]\s*)(\w+)\s*:/g,'$1"$2":').replace(/,(\s*[}\]])/g,'$1');cfg=JSON.parse(j);if(!cfg.apiKey||!cfg.databaseURL)throw 0}
   catch(err){e.style.display='block';return}
   e.style.display='none';
   try{initFb(cfg);lsSet('fb_cfg',JSON.stringify(cfg));showRoom()}
