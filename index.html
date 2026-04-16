@@ -584,7 +584,7 @@ function deleteSuperItem(e,catId,itemId){
 }
 
 // ===== カテゴリCRUD（日用品・スーパー共用） =====
-function buildColors(sel){document.getElementById('color-row').innerHTML=COLORS.map(function(c){return'<div class="clr-swatch '+(c===sel?'on':'')+'" style="background:'+c+'" data-color="'+c+'" onclick="selColor(this)"></div>'}).join('')}
+function buildColors(sel){var s=sel||COLORS[0];document.getElementById('color-row').innerHTML=COLORS.map(function(c){return'<div class="clr-swatch '+(c===s?'on':'')+'" style="background:'+c+'" data-color="'+c+'" onclick="selColor(this)"></div>'}).join('')}
 function selColor(el){document.querySelectorAll('.clr-swatch').forEach(function(s){s.classList.remove('on')});el.classList.add('on')}
 
 function openAddCat(){editCatPage='daily';editCatCtx=null;document.getElementById('cat-modal-title').textContent='カテゴリを追加（日用品）';document.getElementById('cf-name').value='';document.getElementById('cf-emoji').value='';buildColors(COLORS[0]);document.getElementById('cat-modal').classList.add('open')}
